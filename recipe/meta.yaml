@@ -10,19 +10,24 @@ source:
 
 build:
   number: 0
-  noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
+  script: python -m pip install --no-deps --ignore-installed --no-build-isolation .
 
 requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
     - numpy
   run:
     - python
     - numpy
 
 test:
+  requires:
+    - pip
+  commands:
+    - pip check
   imports:
     - colorspacious
 
